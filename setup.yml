@@ -3,6 +3,6 @@
   hosts: main
   tasks:
     - name: running test1
-      command: "mkdir test1"
+      command: "rm -rf test1"
     - name: running test2
-      command: "mkdir test2"
+      command: "rm -rf test2"
