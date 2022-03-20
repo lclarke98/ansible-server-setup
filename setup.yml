@@ -1,25 +1,24 @@
 ---
 # Setup LAMP Stack
-- hosts: webServer
+- name: Install LAMP stack
+  hosts: test
   tasks:
     - name: install lamp stack
-      sudo: yes
+      become: yes
       apt: name={{ item }} state=present update_cache=yes
       with_items:
         - apache2
         - mysql-server
-        - php7.0
-        - php7.0-mysql
-
+        - php
+        - php-mysql
     - name: start services
       service: name={{ item }} state=started enabled=yes
-      sudo: yes
+      become: yes
       with_items:
         - apache2
         - mysql
-
     - name: deploy index.html
-      sudo: yes
+      become: yes
       copy:
-        src: /tmp/index.html
+        src: /Users/leoclarke/Documents/github/ansible-server-setup/tmp/index.html
         dest: /var/www/html/index.html
